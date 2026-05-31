@@ -1,0 +1,47 @@
+//impact.jsx
+import { useEffect, useState } from "react";
+
+export default function ImpactCounters() {
+  const [trees, setTrees] = useState(0);
+  const [children, setChildren] = useState(0);
+
+  useEffect(() => {
+    let t = setInterval(() => {
+      setTrees(prev => (prev < 500 ? prev + 5 : prev));
+      setChildren(prev => (prev < 200 ? prev + 2 : prev));
+    }, 50);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <section className="bg-white py-12 text-center">
+      <h2 className="text-2xl font-bold mb-6 text-green-900">Our Impact</h2>
+      <div className="flex justify-center gap-12 text-3xl font-bold">
+        <div> {trees}+ Trees Planted</div>
+        <div> {children}+ Children Educated</div>
+      </div>
+    </section>
+  );
+}
+//script.jsx
+import React from "react";
+
+export default function Navbar({ toggleDark }) {
+  return (
+    <header className="header">
+      <div className="logo">
+        <h1>InAmigos Foundation</h1>
+      </div>
+      <nav className="navbar">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><button onClick={toggleDark}> Dark Mode</button></li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
